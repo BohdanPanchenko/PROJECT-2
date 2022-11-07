@@ -84,7 +84,6 @@ body::before {
     justify-content: center;
     text-align: center;
     width: 100%;
-    /* height: calc(800px / 9.91); */
     height: calc(1200px / 10);
     margin: 0 auto;
     background-image: url("./images/body-bg-silver.png");
@@ -119,7 +118,6 @@ body::before {
 }
 
 
-/* #6485c3 */
 
 .question-options {
     display: flex;
