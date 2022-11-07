@@ -109,9 +109,6 @@ body {
     color: #fff;
 }
 
-.sqrt {}
-
-.plus_minus {}
 
 .column-item {
     flex-grow: 1;
@@ -129,15 +126,10 @@ body {
     color: #444;
 }
 
-.divide {}
 
 .multiply {
     font-size: 20px;
 }
-
-.subtract {}
-
-.add {}
 
 .equals {
     background: #292929;
