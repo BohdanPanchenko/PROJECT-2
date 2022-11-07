@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./randomizer.css">
+    <link rel="stylesheet" href="./animations.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="randomizer">
+        <div class="row"> <label for="from">from</label>
+            <input type="number" id="from" placeholder="min" class="min" min="0">
+            <label for="to">to</label>
+            <input type="number" id="to" placeholder="max" class="max" max="1000">
+        </div>
+        <div class="row">
+            <input type="number" id="quantity" placeholder="quantity" class="quantity">
+            <label for="unique" class="unique">
+              <input type="checkbox" id="unique">
+              <span></span>
+              unique 
+            </label>
+            <div class="btns"> <button type="button" class="btn">generare</button>
+                <button type="button" class="clear btn">clear</button></div>
+
+            <ul class="list">
+            </ul>
+        </div>
+
+
+    </div>
+    <script src="./randomizer.js"></script>
+</body>
+
+</html>

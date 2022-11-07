@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/who-wants-to-be-a-millionaire-logo-svg-vector.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./animations.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="main-section ">
+            <!-- <div class="main-logo"><img src="./images/who-wants-to-be-a-millionaire-logo-svg-vector.svg" width="200px" alt=""></div> -->
+            <div class="question-field hidden">
+                <div class="question-body "></div>
+                <div class="question-options">
+                    <div class="option-item">
+                        <div class="option-marker">A.</div>
+                        <div class="option-text"></div>
+                    </div>
+                    <div class="option-item">
+                        <div class="option-marker">B.</div>
+                        <div class="option-text"></div>
+                    </div>
+                    <div class="option-item">
+                        <div class="option-marker">C.</div>
+                        <div class="option-text"></div>
+                    </div>
+                    <div class="option-item">
+                        <div class="option-marker">D.</div>
+                        <div class="option-text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="progress-bar hidden">
+            <ul>
+                <li class="">
+                    <span class="row-marker">1</span>
+                    <span class="row-text">$ 100</span>
+                </li>
+
+                <li>
+                    <span class="row-marker">2</span>
+                    <span class="row-text">$ 200</span>
+                </li>
+
+                <li>
+                    <span class="row-marker">3</span>
+                    <span class="row-text">$ 300</span>
+                </li>
+                <li>
+                    <span class="row-marker">4</span>
+                    <span class="row-text">$ 500</span>
+                </li>
+                <li>
+                    <span class="row-marker">5</span>
+                    <span class="row-text">$ 1 000</span>
+                </li>
+                <li>
+                    <span class="row-marker">6</span>
+                    <span class="row-text">$ 2 000</span>
+                </li>
+                <li>
+                    <span class="row-marker">7 </span>
+                    <span class="row-text">$ 4 000</span>
+                </li>
+                <li>
+                    <span class="row-marker">8 </span>
+                    <span class="row-text">$ 8 000</span>
+                </li>
+                <li>
+                    <span class="row-marker">9 </span>
+                    <span class="row-text">$ 16 000</span>
+                </li>
+                <li>
+                    <span class="row-marker">10</span>
+                    <span class="row-text">$ 25 000</span>
+                </li>
+                <li>
+                    <span class="row-marker">11</span>
+                    <span class="row-text">$ 50 000</span>
+                </li>
+                <li>
+                    <span class="row-marker">12</span>
+                    <span class="row-text">$ 100 000</span>
+                </li>
+                <li>
+                    <span class="row-marker">13</span>
+                    <span class="row-text">$ 250 000</span>
+                </li>
+                <li>
+                    <span class="row-marker">14</span>
+                    <span class="row-text">$ 500 000</span>
+                </li>
+                <li class="million">
+                    1 million $
+                </li>
+            </ul>
+        </div>
+        <div class="pop-up">
+            <div class="pop-up-message">Do you want to be a Millionaire?</div>
+            <button class="pop-up-btn" type="button">Start game</button>
+            <button class="pop-up-btn hidden" type="button"></button>
+        </div>
+        <div class="lifelines hidden">
+            <div class="lifeline-img" data-lifelines="50/50"><img src="./images/fifty.png" alt="fifty-fifty-img"></div>
+            <div class="lifeline-img" data-lifelines="ask-audience"><img src="./images/audience (1).png" alt="ask-the-audience-img"></div>
+            <div class="lifeline-img" data-lifelines="change-question"><img src="./images/change.png" alt="change-question-img"></div>
+        </div>
+
+        <div class="countdown-circle hidden">
+            <div class="countdown-value">30</div>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="200px" height="200px">
+                <defs>
+                    <linearGradient id="GradientColor">
+                        <stop offset="0%" stop-color="#e91e63" />
+                        <stop offset="100%" stop-color="#673ab7" />
+                    </linearGradient>
+                </defs>
+                <circle cx="100" cy="100" r="100" stroke-linecap="round" />
+            </svg>
+        </div>
+        <script type="module" src="./questions.js"></script>
+        <script type="module" src="./script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html,
+        body {
+            height: 100%
+        }
+        
+        ul,
+        li {
+            list-style: none;
+        }
+        
+        .list {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 50px;
+        }
+        
+        .item {
+            width: 250px;
+            height: 250px;
+            position: relative;
+            transition: 0.7s;
+        }
+        
+        .item:hover {
+            transform: scale(1.25);
+        }
+        
+        .item img {
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <ul class="list">
+        <li class="item">
+            <a href="./Millionaire/index.html"><img src="./img/millionaire.png" alt="millionaire"></a>
+        </li>
+        <li class="item">
+            <a href="./calculator/calculator.html"><img src="./img/calculator.png" alt="calculator"></a>
+        </li>
+        <li class="item">
+            <a href="./randomizer/randomizer.html"><img src="./img/randomizer.png" alt="randomizer"></a>
+        </li>
+    </ul>
+</body>
+
+</html>
