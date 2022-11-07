@@ -1,6 +1,3 @@
-.container {}
-
-.main-section {}
 
 .question-field {
     transition-delay: 1.1s;
@@ -40,7 +37,6 @@
     }
 }
 
-.question-options {}
 
 .option-item {
     animation: bounce-in-left 1.1s both;
@@ -314,10 +310,6 @@
     }
 }
 
-.option-marker {}
-
-.option-text {}
-
 .progress-bar {
     animation: fade-in-right 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
@@ -352,13 +344,6 @@
     }
 }
 
-.row-marker {}
-
-.row-text {}
-
-.current {}
-
-.million {}
 
 .pop-up {
     animation: scale-in-center-modal 0.9s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -390,7 +375,6 @@
     }
 }
 
-.pop-up-message {}
 
 .pop-up-btn.animation-out {
     animation: fade-out 1s ease-out both;
