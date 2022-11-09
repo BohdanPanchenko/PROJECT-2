@@ -12,22 +12,24 @@ calculatorBody.addEventListener('click', (event) => {
 
     } else if (target.classList.contains('operator')) {
 
-        if (isBinaryOpeartor(target.innerText)) {
+        if (isBinaryOpeartor(target.innerText) && !checkNumericLength(inputField.innerText)) {
             if (!operator) {
                 operator = operatorConverter(target.innerText);
                 inputField.innerText += operator;
 
             } else {
-
-                if (!inputField.innerText.split(operator).includes('')) {
+                if (!inputField.innerText.split(operator).includes('') || (inputField.innerText.split(operator)[0] === '' && inputField.innerText.split(operator).reverse()[0] !== '')) {
                     operator = operatorConverter(target.innerText);
-                    inputField.innerText = eval(inputField.innerText) + operator;
+                    let result = round(eval(inputField.innerText));
+                    inputField.innerText = result + operator;
                 } else {
+
                     let operatorIndex = inputField.innerText.split('').reverse().indexOf(operator);
                     operator = operatorConverter(target.innerText);
                     let input = inputField.innerText.split('').reverse();
                     input.splice(operatorIndex, 1, operator);
                     inputField.innerText = input.reverse().join('');
+
                 }
 
             }
@@ -53,8 +55,8 @@ document.querySelector('.equals').addEventListener('click', (e) => {
 
     let nums = inputField.innerText.split(operator);
     if (nums[nums.length - 1] !== '') {
-        let result = eval(inputField.innerText);
-        inputField.innerText = Number(result.toFixed(6));
+        let result = round(eval(inputField.innerText));
+        inputField.innerText = result;
         operator = '';
         if (!inputField.innerText.includes('.')) { dotsNumber = 0; }
     }
@@ -63,7 +65,7 @@ document.querySelector('.equals').addEventListener('click', (e) => {
 })
 
 function dotsFilter() {
-    if (dotsNumber === 0 && isDigit(inputField.innerText.at(-1))) {
+    if (dotsNumber === 0 && isDigit(inputField.innerText.at(-1)) && !checkNumericLength(inputField.innerText)) {
         if (!operator && !isNaN(inputField.innerText + '.') || operator) {
             let key = false;
             inputField.innerText.split(operator).forEach(el => {
@@ -74,10 +76,7 @@ function dotsFilter() {
                 inputField.innerText += '.';
                 dotsNumber++;
             }
-
         }
-
-
     }
 }
 
@@ -85,14 +84,22 @@ function operatorConverter(operator) {
     return (operator === '÷') ? '/' : ((operator === 'x') ? '*' : operator);
 }
 
+function checkNumericLength(input) {
+    let counter = 0;
+    input.split('').forEach(el => {
+        if (isDigit(el)) counter++;
+    })
+
+    return counter >= 9;
+}
+
 function onDigitHandler(input) {
+    if (checkNumericLength(inputField.innerText))
+        return;
 
     if (inputField.innerText === '0') {
         inputField.innerText = input.innerText;
     } else inputField.innerText += input.innerText;
-
-
-
 }
 
 function clearInputField() {
@@ -106,7 +113,7 @@ function unaryOperation(unaryOperator) {
     if (!operator) {
         switch (unaryOperator) {
             case '√':
-                inputField.innerText = Math.sqrt(inputField.innerText);
+                inputField.innerText = round(Math.sqrt(inputField.innerText));
                 break;
             case '±':
                 if (inputField.innerText !== '0') {
@@ -123,14 +130,20 @@ function calculatePercentage(str) {
         let num1 = str.split(operator)[1];
         let num2 = str.split(operator)[0];
         let percentage = num2 / 100 * num1;
+        percentage = round(percentage);
 
         str = str.split(operator);
         str.splice(str.length - 1, 1, percentage);
 
         inputField.innerText = str.join(operator);
     } else if (!operator) {
-        inputField.innerText /= 100;
+        let result = round(inputField.innerText / 100);
+        inputField.innerText = result;
     }
+}
+
+function round(number) {
+    return Number(number.toFixed(7));
 }
 
 function isBinaryOpeartor(str) {
