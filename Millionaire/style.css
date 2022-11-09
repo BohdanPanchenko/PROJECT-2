@@ -117,8 +117,6 @@ body::before {
     }
 }
 
-
-
 .question-options {
     display: flex;
     flex-wrap: wrap;
@@ -127,8 +125,6 @@ body::before {
 }
 
 .option-item {
-    /* width: 420px;
-    height: calc(420px / 10); */
     width: 511px;
     height: calc(511px / 10);
     background-image: url("./images/option-bg-left-black.png");
@@ -140,6 +136,27 @@ body::before {
     padding: 10px 30px 10px 125px;
     transition: 0.5s;
     cursor: pointer;
+    position: relative;
+}
+
+.option-item>* {
+    z-index: 5;
+}
+
+.option-item img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+}
+
+.orange {
+    transition: 0.5s;
 }
 
 .option-item.disabled {
@@ -151,28 +168,16 @@ body::before {
     background-image: url("./images/option-bg-right-black.png");
 }
 
-.option-item:hover {
-    background-image: url("./images/option-bg-left-orange.png");
+.option-item:hover .orange {
+    opacity: 1.0;
 }
 
-.option-item:nth-child(even):hover {
-    background-image: url("./images/option-bg-right-orange.png");
+.option-item.bg-green .green {
+    opacity: 1;
 }
 
-.option-item.bg-green {
-    background-image: url("./images/option-bg-left-green.png");
-}
-
-.option-item.bg-green:nth-child(even) {
-    background-image: url("./images/option-bg-right-green.png");
-}
-
-.option-item.bg-red {
-    background-image: url("./images/option-bg-left-red.png");
-}
-
-.option-item.bg-red:nth-child(even) {
-    background-image: url("./images/option-bg-right-red.png");
+.option-item.bg-red .red {
+    opacity: 1;
 }
 
 .option-marker {
@@ -309,7 +314,6 @@ body::before {
     outline: none;
     transition: 0.7s;
     cursor: pointer;
-    /* transition-delay: 1s; */
 }
 
 .pop-up-btn:hover {
@@ -458,7 +462,6 @@ body::before {
 
 .countdown-circle svg {
     overflow: visible;
-    /* background-color: #4d5679; */
     border-radius: 50%;
 }
 
@@ -490,9 +493,6 @@ body::before {
 }
 
 @media(max-width:1600px) {
-    .progress-bar ul {
-        /* row-gap: 0; */
-    }
     .progress-bar ul li {
         padding: 2px 25px;
     }
