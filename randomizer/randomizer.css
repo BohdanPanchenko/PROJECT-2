@@ -111,10 +111,15 @@ input[type="checkbox"] {
     opacity: 0.7;
 }
 
+.btns>* {
+    flex-basis: 20%;
+}
+
 .list {
     flex-wrap: wrap;
     row-gap: 10px;
-    justify-content: flex-start;
+    padding: 25px 0 0;
+    justify-content: center;
     overflow-y: auto;
     height: 350px;
     align-content: flex-start;
@@ -128,21 +133,4 @@ input[type="checkbox"] {
     width: 150px;
     text-align: center;
     display: block;
-}
-
-@keyframes slide-in-elliptic-top-fwd {
-    0% {
-        -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
-        transform: translateY(-600px) rotateX(-30deg) scale(0);
-        -webkit-transform-origin: 50% 100%;
-        transform-origin: 50% 100%;
-        opacity: 0;
-    }
-    100% {
-        -webkit-transform: translateY(0) rotateX(0) scale(1);
-        transform: translateY(0) rotateX(0) scale(1);
-        -webkit-transform-origin: 50% 1400px;
-        transform-origin: 50% 1400px;
-        opacity: 1;
-    }
 }
