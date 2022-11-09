@@ -1,4 +1,3 @@
-
 .question-field {
     transition-delay: 1.1s;
 }
@@ -37,7 +36,6 @@
     }
 }
 
-
 .option-item {
     animation: bounce-in-left 1.1s both;
 }
@@ -47,7 +45,6 @@
 }
 
 .option-item.animation-out {
-    /* animation: bounce-out-left 1.5s both; */
     animation: slide-out-blurred-left 1.1s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
 }
 
@@ -73,7 +70,6 @@
 }
 
 .option-item.animation-out:nth-child(even) {
-    /* animation: bounce-out-right 1.5s both; */
     animation: slide-out-blurred-right 1.1s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
 }
 
@@ -344,7 +340,6 @@
     }
 }
 
-
 .pop-up {
     animation: scale-in-center-modal 0.9s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
@@ -374,7 +369,6 @@
         opacity: 1;
     }
 }
-
 
 .pop-up-btn.animation-out {
     animation: fade-out 1s ease-out both;
@@ -473,7 +467,6 @@
 }
 
 .countdown-circle circle {
-    /* stroke: rgb(180, 196, 36); */
     display: block;
     animation: countdown-animation 30s linear;
 }
@@ -481,26 +474,21 @@
 @keyframes countdown-animation {
     0% {
         stroke: rgb(24 157 12);
-        /* transform: rotateY(180deg) rotateZ(-90deg); */
         stroke-dashoffset: 0;
     }
     25% {
         stroke: rgba(31, 173, 18, 0.699);
-        /* transform: rotateY(180deg) rotateZ(-90deg); */
         stroke-dashoffset: 157;
     }
     50% {
         stroke: rgb(243 116 5);
-        /* transform: rotateY(180deg) rotateZ(-90deg); */
         stroke-dashoffset: 314;
     }
     75% {
-        /* transform: rotateY(180deg) rotateZ(-90deg); */
         stroke-dashoffset: 471;
     }
     100% {
         stroke: rgb(248, 0, 0);
-        /* transform: rotateY(180deg) rotateZ(-90deg); */
         stroke-dashoffset: 628;
     }
 }
