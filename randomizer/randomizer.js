@@ -1,167 +1,88 @@
-const calculatorBody = document.querySelector('.calculator-body');
-const inputField = document.querySelector('.input-field');
+let from = document.querySelector('#from');
+let to = document.querySelector('#to');
+let buttons = document.querySelector('.btns');
+let list = document.querySelector('.list');
 
-let operator = '';
-let dotsNumber = 0;
-let key = true;
-let result = 0;
-calculatorBody.addEventListener('click', (event) => {
-    let target = event.target;
-    if (target.classList.contains('digit')) {
-        onDigitHandler(target);
-
-    } else if (target.classList.contains('operator')) {
-
-        if (isBinaryOpeartor(target.innerText) && !checkNumericLength(inputField.innerText)) {
-            if (!operator) {
-                operator = operatorConverter(target.innerText);
-                inputField.innerText += operator;
-
-            } else {
-                if (!inputField.innerText.split(operator).includes('') || (inputField.innerText.split(operator)[0] === '' && inputField.innerText.split(operator).reverse()[0] !== '')) {
-                    operator = operatorConverter(target.innerText);
-                    let result = round(eval(inputField.innerText));
-                    inputField.innerText = result + operator;
-                } else {
-
-                    let operatorIndex = inputField.innerText.split('').reverse().indexOf(operator);
-                    operator = operatorConverter(target.innerText);
-                    let input = inputField.innerText.split('').reverse();
-                    input.splice(operatorIndex, 1, operator);
-                    inputField.innerText = input.reverse().join('');
-
-                }
-
-            }
-            dotsNumber = 0;
-        } else { //unary operators
-            unaryOperation(target.innerText);
-        }
-
-    } else if (target.innerText === '.') {
-        dotsFilter();
-
-
-    } else if (target.innerText === '%') {
-        calculatePercentage(inputField.innerText);
+function getRandomWithoutRepeat(min, max, quantity) {
+    let arr = [];
+    for (let i = min; i <= max; i++) {
+        arr.push(i);
     }
-
-})
-
-document.querySelector('.clear').addEventListener('click', (e) => {
-    clearInputField();
-})
-document.querySelector('.equals').addEventListener('click', (e) => {
-
-    let nums = inputField.innerText.split(operator);
-    if (nums[nums.length - 1] !== '') {
-        let result = round(eval(inputField.innerText));
-        inputField.innerText = result;
-        operator = '';
-        if (!inputField.innerText.includes('.')) { dotsNumber = 0; }
+    let result = [];
+    for (let i = 0; i < quantity; i++) {
+        let randomIndex = getRandomIntInclusive(0, arr.length - 1);
+        result.push(arr[randomIndex]);
+        arr.splice(randomIndex, 1);
     }
+    return result;
+}
+
+function clear() {
+    list.innerHTML = '';
+}
+
+function quantityFilter(min, max, quantity) {
+    let quantityMax = max - min + 1;
+    if (quantity < 1 || quantity === '') return 1;
+    else if (quantity > quantityMax) return (quantityMax > 100) ? 100 : quantityMax;
+    else if (quantity > 100) return 100;
+
+    return Math.round(quantity);
+
+}
+
+function getMinMaxValue(min, max) {
+    let minMax = {};
+    minMax.min = (min < 0) ? 0 : (min >= 150) ? 150 : min;
+    minMax.max = (max <= 0) ? 1 : (max > 150) ? 150 : max;
+
+    if (minMax.max < minMax.min)[minMax.max, minMax.min] = [minMax.min, minMax.max];
+
+    minMax.min = Math.round(minMax.min);
+    minMax.max = Math.round(minMax.max);
+    return minMax;
+
+}
+
+buttons.addEventListener('click', e => {
+    if (e.target.classList.contains('clear'))
+        clear();
+    else {
+        clear();
+        let minMaxValue = getMinMaxValue(from.value, to.value)
+        let minValue = from.value = minMaxValue.min;
+        let maxValue = to.value = minMaxValue.max;
 
 
-})
+        let quantityElement = document.querySelector('.quantity');
+        let quantityValue = quantityFilter(minValue, maxValue, quantityElement.value);
+        quantityElement.value = quantityValue;
 
-function dotsFilter() {
-    if (dotsNumber === 0 && isDigit(inputField.innerText.at(-1)) && !checkNumericLength(inputField.innerText)) {
-        if (!operator && !isNaN(inputField.innerText + '.') || operator) {
-            let key = false;
-            inputField.innerText.split(operator).forEach(el => {
-                if (isNaN(el + '.')) key = false;
-                else key = true;
+        let checkbox = document.querySelector('#unique');
+        let isUnique = checkbox.checked;
+        if (isUnique) {
+            let numbers = getRandomWithoutRepeat(minValue, maxValue, quantityValue)
+            numbers.forEach(el => {
+                let li = document.createElement('li');
+                li.innerText = el;
+                list.appendChild(li);
             })
-            if (key) {
-                inputField.innerText += '.';
-                dotsNumber++;
+        } else {
+            for (let i = 0; i < quantityValue; i++) {
+                let listItem = document.createElement('li');
+                listItem.innerText = getRandomIntInclusive(minValue, maxValue);
+                list.appendChild(listItem);
             }
         }
+
+
+
     }
-}
 
-function operatorConverter(operator) {
-    return (operator === '÷') ? '/' : ((operator === 'x') ? '*' : operator);
-}
+})
 
-function checkNumericLength(input) {
-    let counter = 0;
-    input.split('').forEach(el => {
-        if (isDigit(el)) counter++;
-    })
-
-    return counter >= 9;
-}
-
-function onDigitHandler(input) {
-    if (checkNumericLength(inputField.innerText))
-        return;
-
-    if (inputField.innerText === '0') {
-        inputField.innerText = input.innerText;
-    } else inputField.innerText += input.innerText;
-}
-
-function clearInputField() {
-    inputField.innerText = '0';
-    number = '';
-    operator = '';
-    dotsNumber = 0;
-}
-
-function unaryOperation(unaryOperator) {
-    if (!operator) {
-        switch (unaryOperator) {
-            case '√':
-                inputField.innerText = round(Math.sqrt(inputField.innerText));
-                break;
-            case '±':
-                if (inputField.innerText !== '0') {
-                    inputField.innerText *= -1;
-                }
-                break;
-        }
-    }
-}
-
-
-function calculatePercentage(str) {
-    if (operator && isDigit(str[str.length - 1])) {
-        let num1 = str.split(operator)[1];
-        let num2 = str.split(operator)[0];
-        let percentage = num2 / 100 * num1;
-        percentage = round(percentage);
-
-        str = str.split(operator);
-        str.splice(str.length - 1, 1, percentage);
-
-        inputField.innerText = str.join(operator);
-    } else if (!operator) {
-        let result = round(inputField.innerText / 100);
-        inputField.innerText = result;
-    }
-}
-
-function round(number) {
-    return Number(number.toFixed(7));
-}
-
-function isBinaryOpeartor(str) {
-    return ('+-x÷'.includes(str)) ? true : false;
-}
-
-function containsBinaryOpeartor(str) {
-    let operators = '+-*/';
-    let contains = false;
-    operators
-        .split('')
-        .forEach(el => {
-            if (str.includes(el))
-                contains = true;
-        })
-    return contains
-}
-
-function isDigit(str) {
-    return ('0123456789'.includes(str)) ? true : false;
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
