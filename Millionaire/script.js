@@ -7,10 +7,11 @@ let gameQuestions = [];
 let loseSound = new Audio('./audio/lose.mp3');
 let winSound = new Audio('./audio/win.mp3');
 
-// console.log(questions.filter((el) => el.complexity === 1).length);
-// console.log(questions.filter((el) => el.complexity === 2).length);
-// console.log(questions.filter((el) => el.complexity === 3).length);
-
+{
+    let btnBgHover = new Image(); //
+    btnBgHover.src = './images/btn-orange.png';
+    btnBgHover.onload = () => { console.log('success!') };
+}
 
 
 let timerId;
